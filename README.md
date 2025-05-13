@@ -1,4 +1,4 @@
-# 🚀 Quaestum - TESTE PRÁTICO - DESENVOLVEDOR WEB PLENO
+# 🚀 Quaestum - TESTE PRÁTICO - DESENVOLVEDOR WEB
 
 > ⚠️ Projeto em desenvolvimento. Este repositório será atualizado frequentemente até a conclusão do teste técnico.
 
