@@ -21,14 +21,14 @@ Desenvolvimento do frontend deve ser  ReactJS
   </tr>
   <tr>
     <td><input type="checkbox" disabled> Tela de login</td>
-    <td>🚧 Não implementado</td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" disabled> Tela de cadastro - Administrador</td>
-    <td>🚧 Não implementado</td>
+    <td>🔁 Em Desenvolvimento</td>
   </tr>
   <tr>
     <td><input type="checkbox" disabled> Tela de cadastro - Candidato</td>
+    <td>🔁 Em Desenvolvimento</td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" disabled> Tela de cadastro - Administrador</td>
     <td>🚧 Não implementado</td>
   </tr>
   <tr>
