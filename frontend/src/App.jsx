@@ -4,8 +4,6 @@ import {
   Routes,
   Route,
   BrowserRouter,
-  createBrowserRouter,
-  createRoutesFromElements,
 } from "react-router-dom";
 import Login from "./login";
 import Home from "./home";

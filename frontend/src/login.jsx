@@ -1,9 +1,9 @@
 import React from "react";
-
-// Component responsible for rendering the login page UI
+import {Link} from "react-router-dom"
 
 const Login = () => {
-  // All Tailwind classes for styling components.
+
+  // Todas declarações do Tailwind para evitar repetição de código
 
   const formContainer = "relative flex mt-10";
   const formInput =
@@ -12,7 +12,7 @@ const Login = () => {
     "absolute origin-center select-none cursor-text opacity-60 bottom-full transition-all duration-200 peer-focus:bottom-full peer-placeholder-shown:bottom-1/4";
 
   return (
-    // Main container for Login Page. Only frontend is implemented for now. The buttons and links has no functions.
+    // Somente frontend e rotas estão implementadas no momento.
 
     <div class="container h-full flex flex-col items-center justify-center transition-all duration-200">
       <form
@@ -65,7 +65,6 @@ const Login = () => {
               id="remember"
             />
             <label class="" htmlFor="remember">
-              {" "}
               Lembre-se de mim
             </label>
           </div>
@@ -77,9 +76,13 @@ const Login = () => {
       <div class="mt-5">
         <p class="text-[14px]">
           Ainda não é cadastrado?{" "}
+          <Link to={{
+            pathname: "/register"
+          }}>
           <a class="text-sm text-(--primary-highlight-color) hover:underline decoration-1 hover:cursor-pointer hover:text-(--secondary-highlight-color)">
             Crie uma conta!
           </a>
+          </Link>
         </p>
       </div>
     </div>
