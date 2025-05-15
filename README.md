@@ -54,10 +54,10 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/CandidatesController.ts) | Implementado com `uuid` e `@adonisjs/mail`.                                            |
 | Sistema deve permitir login com e-mail e senha | ❌ Não iniciado | | Somente a validação do e-mail após cadastro está ativa. |
 | Área restrita para listagem de candidatos acessível só por gestores | ❌ Não iniciado  | | Requer filtro, segurança e banco de dados dos recrutadores. |
-| Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ❌ Não iniciado | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
-| Buscar candidatos por nome e habilidades | ❌ Não iniciado  | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
-| Selecionar candidatos e enviar convite por e-mail para entrevista | ❌ Não iniciado | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
-| Candidato selecionado deve ver notificação ao acessar o sistema | ❌ Não iniciado | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
+| Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
+| Buscar candidatos por nome e habilidades | ❌ Não iniciado  | | Não implementado devido à ausência do banco de dados dos recrutadores. |
+| Selecionar candidatos e enviar convite por e-mail para entrevista | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
+| Candidato selecionado deve ver notificação ao acessar o sistema | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
 | Aplicação deve usar ReactJS (Frontend) e AdonisJS V6 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Campo id com auto-increProjeto iniciado com Vite e ReactJS no frontend e AdonisJS v6 no backend.mento padrão.                               |
 | Banco de dados deve ser MySQL | ✅ Concluído | [📄](/backend/config/database.ts) | Conexão configurada em .env para uso local |
 | Repositório deve conter um README explicando como rodar e testar a aplicação  | 🚧 Em andamento  | [📄](/README.md) | Está sendo escrito com o andar do projeto |
