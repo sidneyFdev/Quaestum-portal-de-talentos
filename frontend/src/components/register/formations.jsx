@@ -2,17 +2,15 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 
-export const RegisterFormation = () => {
+export const RegisterFormation = ({ setCandidateFormations, candidateFormations }) => {
     const [showFormations, setShowFormations] = useState(false)
     const [canAddNewFormation, setCanAddNewFormation] = useState(true)
-    const [insertFormations, setInsertFormations] = useState([
-    ])
 
     useEffect(() => {
         if(showFormations){
             checkValidFormation()
         }
-    }, [insertFormations])
+    }, [candidateFormations])
 
     const formationInputPlaceholder = [
         "Nome do Curso",
@@ -22,25 +20,25 @@ export const RegisterFormation = () => {
 
     const defaultFormation = {
         course: "",
-        institute: "",
-        finishDate: "",
+        institution: "",
+        conclusion: "",
     }
 
     const checkValidFormation = () => {
-        if(insertFormations.length > 0) {
-            let validInfo = Object.values(insertFormations[insertFormations.length - 1]).every(value => value.trim() !== "")
+        if(candidateFormations.length > 0) {
+            let validInfo = Object.values(candidateFormations[candidateFormations.length - 1]).every(value => value.trim() !== "")
             setCanAddNewFormation(validInfo)
-        } else if (insertFormations.length == 0) {
+        } else if (candidateFormations.length == 0) {
             setCanAddNewFormation(true)
         }
     }
 
     const addNewFormation = () => {
-        if(insertFormations.length == 0){
-            setInsertFormations([defaultFormation])
+        if(candidateFormations.length == 0){
+            setCandidateFormations([defaultFormation])
             setCanAddNewFormation(false)
         } else if (canAddNewFormation) {
-            setInsertFormations([...insertFormations, defaultFormation])
+            setCandidateFormations([...candidateFormations, defaultFormation])
             setCanAddNewFormation(false)
         }
     }
@@ -60,8 +58,8 @@ export const RegisterFormation = () => {
             } overflow-hidden`}
         >
             {
-                insertFormations.length != 0 &&
-                insertFormations.map((val, index)=> {
+                candidateFormations.length != 0 &&
+                candidateFormations.map((val, index)=> {
                     return (
                         <div key={index} className="flex flex-col px-2 mt-4">
                             <div className="flex mt-4">
@@ -69,8 +67,8 @@ export const RegisterFormation = () => {
                                 className="text-start  text-[20px] font-medium"
                             >Formação {index + 1} </h4>
                             <button type="button" onClick={() => {
-                                    const updateFormations = insertFormations.filter((_, i) => i !== index);
-                                    setInsertFormations(updateFormations);
+                                    const updateFormations = candidateFormations.filter((_, i) => i !== index);
+                                    setCandidateFormations(updateFormations);
                                 }}>
                                 <FontAwesomeIcon className="ml-10 cursor-pointer hover:text-red-400" icon={faTrash} size={"lg"} />
                             </button>
@@ -86,12 +84,12 @@ export const RegisterFormation = () => {
                                         name={`formation${form}${index}`} 
                                         value={val.form}
                                         onChange={(e) => {
-                                            let updatedFormations = [...insertFormations];
+                                            let updatedFormations = [...candidateFormations];
                                             updatedFormations[index] = {
                                                 ...val,
                                                 [form]: e.target.value
                                             };
-                                            setInsertFormations(updatedFormations);
+                                            setCandidateFormations(updatedFormations);
                                         }} 
                                     />
                                     )

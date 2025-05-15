@@ -1,39 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
+import api from '../../services/api';
 
-const SkillSelection = ({ classes }) => {
+const SkillSelection = ({ candidateSkills, setCandidateSkills, classes }) => {
 
-    const skillOptions = [
-        { value: 'Java', label: 'Java' },
-        { value: 'Node.js', label: 'Node.js' },
-        { value: 'C++', label: 'C++' },
-        { value: 'PHP', label: 'PHP' },
-        { value: 'Python', label: 'Python' },
-        { value: 'Go', label: 'Go' },
-        { value: 'ADVPL', label: 'ADVPL' },
-        { value: 'Angular', label: 'Angular' },
-        { value: 'Electron', label: 'Electron' },
-        { value: 'React', label: 'React' },
-        { value: 'React Native', label: 'React Native' },
-        { value: 'MongoDB', label: 'MongoDB' },
-        { value: 'MySQL', label: 'MySQL' },
-        { value: 'SQLServer', label: 'SQLServer' },
-        { value: 'PostgreSQL', label: 'PostgreSQL' },
-        { value: 'Backend', label: 'Backend' },
-        { value: 'Front-End', label: 'Front-End' },
-    ]
+    const [skillsOptions, setSkillsOptions] = useState([]);
 
-    const [selectedSkills, setSelectedSkills] = useState([]);
+    useEffect(() => {
+        const fetchSkills = async () => {
+            const response = await api.get('/skills');
+            setSkillsOptions(response.data.map(skill => ({
+                value: skill.id,
+                label: skill.name
+            })));
+        }
+        fetchSkills();
+    }
+    , []);
+
+
 
     const handleChange = (selectedOptions) => {
-        setSelectedSkills(selectedOptions)
+        setCandidateSkills(selectedOptions)
     }
 
     return (
         <Select
             isMulti
-            options={skillOptions}
-            value={selectedSkills}
+            options={skillsOptions}
+            value={candidateSkills}
             onChange={handleChange}
             placeholder="Habilidades relevantes..."
             className={classes}
