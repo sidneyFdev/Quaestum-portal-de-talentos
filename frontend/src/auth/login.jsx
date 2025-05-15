@@ -3,6 +3,12 @@ import {Link} from "react-router-dom"
 
 const Login = () => {
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = await CandidateLogon(event.email, event.password)
+  }
+
+
   // Todas declarações do Tailwind para evitar repetição de código
 
   const formContainer = "relative flex mt-10";
@@ -77,7 +83,7 @@ const Login = () => {
         <p className="text-[14px]">
           Ainda não é cadastrado?{" "}
           <Link to={{
-            pathname: "/auth/register"
+            pathname: "/register"
           }} className="text-sm text-(--primary-highlight-color) hover:underline decoration-1 hover:cursor-pointer hover:text-(--secondary-highlight-color)">
             Crie uma conta!
           </Link>
