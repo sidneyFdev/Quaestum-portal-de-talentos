@@ -6,7 +6,6 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import Login from "./auth/login";
-import Home from "./home";
 import Register from "./auth/register";
 import Header from './components/layout/header';
 import SideBar from "./components/layout/sidebar";
@@ -27,9 +26,9 @@ const App = () => {
           }
             <div className="flex-1 overflow-y-auto">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="/auth/register" element={<Register />} />
+              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/admin/login" element={<LoginAdmin />} />
             </Routes>
           </div>
