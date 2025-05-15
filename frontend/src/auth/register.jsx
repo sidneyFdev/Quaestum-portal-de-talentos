@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SkillSelection from "../components/register/skills-select";
+import { RegisterFormation } from "../components/register/formations";
 
 const Register = () => {
   // Lista de campos do formulário com metadados para renderização dinâmica
@@ -85,31 +87,19 @@ const Register = () => {
       pattern: "\\d{1,6}",
       inputmode: "numeric",
     },
-    {
-      type: "password",
-      name: "password",
-      label: "Senha",
-      column: "w-full",
-      pattern: ".{6,}",
-      inputmode: "text",
-    },
-    {
-      type: "password",
-      name: "passwordconfirm",
-      label: "Confirme sua senha",
-      column: "w-full",
-      pattern: ".{6,}",
-      inputmode: "text",
-    },
   ];
 
   return (
     // Somente frontend e rotas estão implementadas no momento.
-    <div className="container max-w-3xl">
+    <div className="flex flex-col items-center p-6 text-center justify-center min-w-full">
       <form
         action=""
-        className="flex flex-wrap w-full max-w-3xl rounded-1 bg-(--card-background-color) rounded-[1rem] px-6 py-4 border-1 border-(--basic-border-color)"
+        className="flex flex-wrap w-full max-w-7xl rounded-1 bg-(--card-background-color) rounded-[1rem] px-6 py-4 border-1 border-(--basic-border-color)"
       >
+        <div className="w-full">
+          <h2 className="text-[24px] font-bold">Informações cadastrais</h2>
+        </div>
+
         {/* Mapeia os campos declarados para gerar os inputs dinamicamente */}
         {allFormComponents.map((val, index) => {
           return (
@@ -136,25 +126,35 @@ const Register = () => {
             </div>
           );
         })}
+        <div className="relative flex mt-6 px-2 w-full">
+          <SkillSelection
+            classes={
+              "peer w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] focus:border-(--basic-focused-border-color) active:outline-0 rounded-[6px]"
+            }
+          />
+        </div>
+
+        <div className="w-full">
+          <RegisterFormation />
+        </div>
         <button
-          className="w-full text-white bg-(--action-button-color) my-10 py-4 mx-2 text-[20px] font-medium rounded-sm cursor-pointer transition-colors duration-300 hover:bg-(--active-action-button-color) active:outline-0 active:scale-99 hover:text-blue-100"
+          className="w-full text-white bg-(--action-button-color) mt-10 py-4 mx-2 text-[20px] font-medium rounded-sm cursor-pointer transition-colors duration-300 hover:bg-(--active-action-button-color) active:outline-0 active:scale-99 hover:text-blue-100"
           type="button"
         >
           Cadastrar
         </button>
-      </form>
-      <p class="text-[14px] mt-4">
-        Já possui uma conta?{" "}
-        <Link
-          to={{
-            pathname: "/login",
-          }}
-        >
-          <a class="text-sm text-(--primary-highlight-color) hover:underline decoration-1 hover:cursor-pointer hover:text-(--secondary-highlight-color)">
+        <p className="mt-4 text-[14px text-center w-full">
+          Já possui uma conta?{" "}
+          <Link
+            to={{
+              pathname: "/auth/login",
+            }}
+            className="text-sm text-(--primary-highlight-color) hover:underline decoration-1 hover:cursor-pointer hover:text-(--secondary-highlight-color)"
+          >
             Faça Login!
-          </a>
-        </Link>
-      </p>
+          </Link>
+        </p>
+      </form>
     </div>
   );
 };
