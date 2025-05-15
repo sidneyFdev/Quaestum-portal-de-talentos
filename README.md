@@ -47,18 +47,18 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | As tabelas devem ser criadas com migrations do AdonisJS | ✅ Concluído | [📁](/backend/database/migrations/) | Foram criadas 5 migrations para as entidades principais. |
 | O e-mail do candidato deve ser único | ✅ Concluído | [📄](/backend/app/models/candidate.ts) | Restrição definida na migration com `unique()`.                                              |
 | Código do candidato sequencial e automático  | ✅ Concluído | [📁](/backend/database/migrations/candidate.ts) | Campo `id` com auto incremento padrão. |
-| Endereço preenchido automaticamente via ViaCEP  | ✅ Concluído | [📄](/frontend/src/services/viaCEP.ts) | Requisição feita ao ViaCEP via WebService.                                         |
+| Endereço preenchido automaticamente via ViaCEP  | ✅ Concluído | [📄](/frontend/src/services/viaCEP.ts) | Requisição feita ao ViaCEP via web service.                                         |
 | Apenas usuários logados podem visualizar dados | 🚧 Em andamento | [📄](/backend/start/routes.ts) | Falta proteger com middleware `auth`. Foram implementadas poucas rotas sem segurança até o momento |
 | Dois tipos de usuário: gestor e candidato  | ❌ Não iniciado  |  | Será implementado um novo banco para `administradores`.                                 |
 | Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/CandidateSkillsSeeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET |
 | Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/CandidatesController.ts) | Implementado com `uuid` e `@adonisjs/mail`.                                            |
 | Sistema deve permitir login com e-mail e senha | ❌ Não iniciado | | Somente a validação do e-mail após cadastro está ativa. |
 | Área restrita para listagem de candidatos acessível só por gestores | ❌ Não iniciado  | | Requer filtro, segurança e banco de dados dos recrutadores. |
-| Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ❌ Não iniciado | | Não implementado a ausência do banco de dados dos recrutadores. |
-| Buscar candidatos por nome e habilidades | ❌ Não iniciado  | | Não implementado a ausência do banco de dados dos recrutadores. |
-| Selecionar candidatos e enviar convite por e-mail para entrevista | ❌ Não iniciado | | Não implementado a ausência do banco de dados dos recrutadores. |
-| Candidato selecionado deve ver notificação ao acessar o sistema | ❌ Não iniciado | | Não implementado a ausência do banco de dados dos recrutadores. |
-| Aplicação deve usar ReactJS (Frontend) e AdonisJS V5 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Projeto iniciado com Vite + ReactJS e backend em AdonisJS v5.                               |
+| Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ❌ Não iniciado | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
+| Buscar candidatos por nome e habilidades | ❌ Não iniciado  | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
+| Selecionar candidatos e enviar convite por e-mail para entrevista | ❌ Não iniciado | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
+| Candidato selecionado deve ver notificação ao acessar o sistema | ❌ Não iniciado | | NNão implementado devido à ausência do banco de dados dos recrutadores. |
+| Aplicação deve usar ReactJS (Frontend) e AdonisJS V6 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Campo id com auto-increProjeto iniciado com Vite e ReactJS no frontend e AdonisJS v6 no backend.mento padrão.                               |
 | Banco de dados deve ser MySQL | ✅ Concluído | [📄](/backend/config/database.ts) | Conexão configurada em .env para uso local |
 | Repositório deve conter um README explicando como rodar e testar a aplicação  | 🚧 Em andamento  | [📄](/README.md) | Está sendo escrito com o andar do projeto |
 | Todos os arquivos necessários para rodar o projeto devem estar incluídos no repositório  | 🚧 Em andamento | [📁](/) | Aplicação em desenvolvimento |
@@ -117,7 +117,7 @@ volumes:
   mysql_data:
 
 ```
-Iniciando o container
+Iniciando o container:
 ```bash
 docker-compose up -d
 ```
@@ -126,7 +126,7 @@ docker-compose up -d
 ```bash
 docker exec -it mysql_quaestum mysql -u adonis -p
 ```
-Executando MySQL via terminal.
+Executando o MySQL via terminal.
 
 ```bash
 docker exec -it mysql_quaestum mysql -uroot -proot
@@ -157,7 +157,7 @@ node ace migrations:run
 
 ### Seeds
 
-Popular as tabelas `skills`e adicionar alguns `candidatos` para o funcionamento básico da aplicação
+Popular as tabelas `skills` e adicionar alguns `candidatos` para o funcionamento básico da aplicação
 ```bash
 node ace db:seed
 ```
@@ -189,7 +189,7 @@ npm install
 
 ### Variáveis de ambiente
 
-> 🔔 Atenção: todas as variáveis de ambiente no Vite devem começar com `VITE_`. Case crie localmente com React, deverão começar com `REACT_APP_` Crie um arquivo `.env` na raiz do projeto React com:
+> 🔔 Atenção: todas as variáveis de ambiente no Vite devem começar com `VITE_`. Caso crie localmente com React, deverão começar com `REACT_APP_` Crie um arquivo `.env` na raiz do projeto React com:
 
 ```env
 VITE_API_URL=http://localhost:3333
@@ -204,7 +204,7 @@ VITE_API_URL=http://localhost:3333
 ## 🛠️ Melhorias
 - 📬 Reenvio de e-mail de confirmação para candidatos.
 - 🧪 Criação de testes unitários principais.
-- 💡 Componentização de elementos no frontend.
+- 💡 Componentização dos elementos no frontend.
 - 📊 Implementar filtro de busca na listagem de candidatos.
 
 ## 📄 Licença
@@ -215,7 +215,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📬 Contato
 
-Quer trocar ideia ou dar feedback? Me chama!  
+Quer trocar uma ideia ou dar feedback? Fique à vontade para me chamar!
 📧 [sidney.figueiredo97.dev@outlook.com](sidney.figueiredo97.dev@outlook.com)  
 🔗 Linkedin: [Sidney Figueiredo](https://www.linkedin.com/in/sidney-figueiredo)  
 🐙 GitHub: [sidneyFdev](https://github.com/sidneyFdev)
