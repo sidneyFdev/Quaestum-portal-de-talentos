@@ -6,11 +6,11 @@ const Header = ({ activeSideBar, toggleActiveSideBar }) => {
     
     return (
         <header
-            className={`w-full border-b-1 border-(--active-action-button-color) p-2 flex justify-between bg-(--action-button-color) text-gray-700 ${activeSideBar && "text-gray-900"}`}
+            className={`w-full border-(--active-action-button-color)  text-gray-700 ${activeSideBar && "text-gray-900"}`}
         >
             <div>
-                <button onClick={toggleActiveSideBar} className='px-2 py-1 
-                border-white cursor-pointer hover:bg-(--active-action-button-color)'>
+                <button onClick={toggleActiveSideBar} className='
+                cursor-pointer hover:bg-(--active-action-button-color)'>
                     <FontAwesomeIcon icon={faBars} size={'xl'}/>
                 </button>
             </div>

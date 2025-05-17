@@ -171,26 +171,19 @@ const Register = () => {
       }
       )
     
-    // if (response == 201) {
-    //   alert(`Seu cadastro foi realizado! Para prosseguir, confirme o e-mail cadastrado.`)
-    //   navigate('/login') 
-    // } else {
-    //   alert(`ocorreu um erro interno.`)
-    // }
   }
 
   return (
     // Somente frontend e rotas estão implementadas no momento.
-    <div className="flex flex-col items-center p-6 text-center justify-center min-w-full">
+    <div className="page-container">
       <form
         action=""
-        className="flex flex-wrap w-full max-w-7xl rounded-1 bg-(--card-background-color) rounded-[1rem] px-6 py-4 border-1 border-(--basic-border-color)"
+        className="default-form-container flex-wrap"
       >
         <div className="w-full">
           <h2 className="text-[24px] font-bold">Informações cadastrais</h2>
         </div>
 
-        {/* Mapeia os campos declarados para gerar os inputs dinamicamente */}
         {formComponents.map((val, index) => {
 
           return (
@@ -207,12 +200,12 @@ const Register = () => {
                 placeholder=" "
                 pattern={val.pattern}
                 inputMode={val.inputmode}
-                className="peer w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] p-3 focus:border-(--basic-focused-border-color) outline-0 rounded-[6px]"
+                className="peer default-input-full-border"
               />
 
               <label
                 htmlFor={val.name}
-                className="absolute left-5 translate-y-1/2 origin-center select-none cursor-text opacity-80 bottom-full transition-all duration-100 text-[10px] -top-0 peer-focus:-top-0 peer-focus:text-[10px] peer-placeholder-shown:text-[16px] peer-placeholder-shown:top-1/3 max-sm:peer-placeholder-shown:text-[12px]max-sm:peer-placeholder-shown:top-1/"
+                className="default-label-anim-to-box"
               >
                 {val.label}
               </label>
@@ -224,7 +217,7 @@ const Register = () => {
             setCandidateSkills={setCandidateSkills}
             candidateSkills={candidateSkills}
             classes={
-              "peer w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] focus:border-(--basic-focused-border-color) active:outline-0 rounded-[6px]"
+              "peer w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] p-3 focus:border-(--basic-focused-border-color) outline-0 rounded-[6px]"
             }
           />
         </div>
@@ -236,7 +229,7 @@ const Register = () => {
           />
         </div>
         <button
-          className="w-full text-white bg-(--action-button-color) mt-10 py-4 mx-2 text-[20px] font-medium rounded-sm cursor-pointer transition-colors duration-300 hover:bg-(--active-action-button-color) active:outline-0 active:scale-99 hover:text-blue-100"
+          className="default-submit-button "
           type="button"
           onClick={handleSubmit}
         >
@@ -248,7 +241,7 @@ const Register = () => {
             to={{
               pathname: "/login",
             }}
-            className="text-sm text-(--primary-highlight-color) hover:underline decoration-1 hover:cursor-pointer hover:text-(--secondary-highlight-color)"
+            className="default-link-button-small"
           >
             Faça Login!
           </Link>

@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+header, footer {
+    @apply bg-(--components-highlight-background) px-8 py-4 border-black flex items-center
+}
+
+.page-container {
+    @apply flex flex-col h-full justify-center items-center transition-all duration-100 ease-in-out px-6
+}
+
+.default-form-container {
+    @apply flex bg-(--card-background-color) pt-16 pb-10 px-10 rounded-2xl text-left min-w-[400px] h-fit border-1 border-(--basic-border-color)
+}
+
+.default-link-button-small{
+    @apply text-sm text-(--primary-highlight-color) hover:underline decoration-1 hover:cursor-pointer hover:text-(--secondary-highlight-color)
+}
+
+.default-submit-button { 
+    @apply w-full bg-(--action-button-color) my-10 py-4 text-[20px] font-medium rounded-sm cursor-pointer transition-colors duration-300 text-white hover:bg-(--active-action-button-color) active:outline-0 active:scale-99 active:text-blue-200 
+}
+
+.default-label-anim-out-box {
+    @apply absolute origin-center select-none cursor-text opacity-60 bottom-full transition-all duration-200 peer-focus:bottom-full peer-placeholder-shown:bottom-1/4
+}
+
+.default-input-border-bottom {
+    @apply w-full border-b-1 border-(--basic-border-color) py-3 focus:border-(--basic-focused-border-color) outline-0
+}
+
+.default-label-anim-to-box {
+    @apply absolute left-5 translate-y-1/2 origin-center select-none cursor-text opacity-80 bottom-full transition-all duration-100 text-[10px] -top-0 peer-focus:-top-0 peer-focus:text-[10px] peer-placeholder-shown:text-[16px] peer-placeholder-shown:top-1/3 max-sm:peer-placeholder-shown:text-[12px] max-sm:peer-placeholder-shown:top-1/2
+}
+
+.default-input-full-border {
+    @apply w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] p-3 focus:border-(--basic-focused-border-color) outline-0 rounded-[6px]
+}
+
+
