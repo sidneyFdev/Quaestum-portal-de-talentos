@@ -2,7 +2,7 @@
 
 > ⚠️ Projeto em desenvolvimento. Este repositório será atualizado frequentemente até a conclusão do teste técnico.
 
-Este repositório é um projeto prático desenvolvido para testar meus conhecimentos para a vaga de desenvolvedor fullstack da empresa [Quaestum](https://www.quaestum.com.br/). O objetivo é provar meus conhecimentos de desenvolvedor Web.
+Este repositório é um projeto prático desenvolvido para testar meus conhecimentos para a vaga de desenvolvedor fullstack da empresa [Quaestum](https://www.quaestum.com.br/).
 
 - [🚀 Quaestum - TESTE PRÁTICO - DESENVOLVEDOR WEB](#-quaestum---teste-prático---desenvolvedor-web)
   - [Requisitos](#requisitos)
@@ -38,7 +38,7 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 
 
 > Durante o desenvolvimento deste projeto, foi utilizado [Docker](https://www.docker.com/). Em caso de dúvidas, consulte a documentação oficial do Docker.
-> ⚠️ Este projeto é um teste técnico e não deve ser utilizado em produção. O código pode conter erros e não está otimizado para produção.
+> ⚠️ Este projeto é um teste técnico e não está completamente otimizado, logo, não deve ser utilizado em produção.
 
 ## Requisitos Obrigatórios
 
