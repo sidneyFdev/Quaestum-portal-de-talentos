@@ -21,7 +21,8 @@ export const RegisterFormation = ({ setCandidateFormations, candidateFormations 
     const defaultFormation = {
         course: "",
         institution: "",
-        conclusion: "",
+        start_date: "",
+        finished_date: "",
     }
 
     const checkValidFormation = () => {

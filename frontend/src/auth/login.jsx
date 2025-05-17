@@ -8,14 +8,10 @@ const Login = () => {
     const data = await CandidateLogon(event.email, event.password)
   }
 
-  
-
-
-
   const formContainer = "relative flex mt-10";
   return (
 
-    <div className="page-container">
+    <div className="default-page-container">
       <form
         className="default-form-container flex-col"
         action=""

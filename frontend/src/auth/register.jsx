@@ -11,6 +11,9 @@ const Register = () => {
   const {InsertNewCandidate} = CandidateRequest()
   const [candidateFormations, setCandidateFormations] = useState([]);
   const [candidateSkills, setCandidateSkills] = useState([]);
+  const [candidateAddress, setCandidateAddress] = useState({
+
+  })
   const [formComponents, setFormComponents] = useState([
     {
       value: "",
@@ -24,7 +27,7 @@ const Register = () => {
     {
       value: "",
       type: "text",
-      name: "lastname",
+      name: "last_name",
       label: "Sobrenome",
       column: "w-full",
       pattern: "[A-Za-zÀ-ÿ\\s]{2,}",
@@ -97,7 +100,7 @@ const Register = () => {
     {
       value: "",
       type: "text",
-      name: "addressnumber",
+      name: "address_number",
       label: "N°",
       column: "w-1/5",
       pattern: "\\d{1,6}",
@@ -153,7 +156,8 @@ const Register = () => {
       formData['educations'] = [...formData.educations, {
         course: formation.course,
         institution: formation.institution,
-        conclusion: formation.conclusion,
+        start_date: formation.start_date,
+        finished_date: formation.finished_date
       }]
     })
     candidateSkills.forEach((skill) => {
@@ -175,7 +179,7 @@ const Register = () => {
 
   return (
     // Somente frontend e rotas estão implementadas no momento.
-    <div className="page-container">
+    <div className="default-page-container">
       <form
         action=""
         className="default-form-container flex-wrap"
@@ -189,7 +193,7 @@ const Register = () => {
           return (
             <div
               key={val.name}
-              className={`relative flex mt-6 px-2 ${val.column} `}
+              className={`relative flex mt-3 px-2 ${val.column} `}
             >
               <input
                 id={val.name}

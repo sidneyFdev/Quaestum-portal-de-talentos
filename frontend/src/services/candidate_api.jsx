@@ -15,12 +15,14 @@ export default function CandidateRequest() {
       educations: data.educations.map(formation => ({
         course: formation.course,
         institution: formation.institution,
-        conclusion: convertToDateTime(formation.conclusion)
+        start_date: convertToDateTime(formation.start_date),
+        finished_date: convertToDateTime(formation.finished_date
+        )
       })),
     }
     
     const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}candidates/register`,
+      `${import.meta.env.VITE_API_URL}candidate/register`,
       correctData
     );
     if (response.status === 201) {

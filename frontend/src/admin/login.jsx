@@ -1,57 +1,90 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import {Link} from "react-router-dom"
+import { components } from "react-select";
 
 const LoginAdmin = () => {
 
-  // Todas declarações do Tailwind para evitar repetição de código
+  const [formFields , setFormsFields] = useState([
+    {
+      type: "email",
+      name: "email",
+      label: "Email",
+      value: "",
+    },
+    {
+      type:"password",
+      name:"password",
+      label: "Senha",
+      value:"",
+    }
+  ])
 
-  const formContainer = "relative flex mt-10";
-  const formInput =
-    "peer w-full border-b-1 border-(--basic-border-color) py-3 focus:border-(--basic-focused-border-color) outline-0";
-  const formLabel =
-    "absolute origin-center select-none cursor-text opacity-60 bottom-full transition-all duration-200 peer-focus:bottom-full peer-placeholder-shown:bottom-1/4";
+  const handleSubmit =  async (params) => {
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}recruiter/login`, {
+        email: params[0].value,
+        password: params[1].value
+      })
+      alert("Realizado Login")
+
+    } catch (error) { 
+      if (error.response?.status === 400){
+        alert("Usuario e senha inválidos.")
+      } else {
+        alert("Erro interno ou de conexão.")
+      }
+    }
+  }
+
+  const toggleFormComponent = (index, value) => {
+    setFormsFields((prevComponents)=> 
+      prevComponents.map((component, i) => {
+        if (i === index) {
+          return { ...component, value: value};
+        }
+        return component
+      })
+    )
+  }
 
   return (
-    // Somente frontend e rotas estão implementadas no momento.
 
-    <div className="h-full flex flex-col items-center justify-center transition-all duration-200">
+    <div className="default-page-container">
       <form
-        className="flex flex-col bg-(--card-background-color) pt-16 pb-10 px-10 rounded-2xl text-left min-w-[400px] h-fit border-1 border-(--basic-border-color)"
+        className="default-form-container flex-col"
         action=""
       >
         <h2 className="text-3xl text-center font-medium">Bem vindo recrutador!</h2>
         <h3 className="text-lg mt-2 text-center font-normal">
           Faça login com sua conta
         </h3>
-        <div className={formContainer}>
-          <input
-            className={formInput}
-            type="email"
-            name="email"
-            id="email"
-            placeholder=""
-          />
 
-          <label className={formLabel} htmlFor="email">
-            Email
-          </label>
-        </div>
-        <div className={formContainer}>
-          <input
-            className={formInput}
-            type="password"
-            name="password"
-            id="password"
-            placeholder=""
-          />
 
-          <label className={formLabel} htmlFor="password">
-            Senha
-          </label>
-        </div>
+        {
+          formFields.map((form, index) => {
+            return (
+              <div className="relative flex mt-10" key={index}>
+              <input
+                className="peer default-input-border-bottom"
+                type={form.type}
+                name={form.name}
+                id={form.name}
+                onChange={(e) => {toggleFormComponent(index, e.target.value)}}
+                placeholder=" "
+              />
+
+              <label className="default-label-anim-out-box" htmlFor={form.name}>
+                {form.label}
+              </label>
+                  </div>
+              )
+          })
+        }
 
         <button
-          className="w-full bg-(--action-button-color) my-10 py-4 text-[20px] font-medium rounded-sm cursor-pointer transition-colors duration-300 text-white hover:bg-(--active-action-button-color) active:outline-0 active:scale-99 active:text-blue-200"
+          onClick={() => handleSubmit(formFields)}
+          className="default-submit-button"
           type="button"
         >
           Login

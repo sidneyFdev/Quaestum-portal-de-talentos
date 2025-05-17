@@ -4,12 +4,12 @@ header, footer {
     @apply bg-(--components-highlight-background) px-8 py-4 border-black flex items-center
 }
 
-.page-container {
-    @apply flex flex-col h-full justify-center items-center transition-all duration-100 ease-in-out px-6
+.default-page-container {
+    @apply flex flex-col h-full justify-center p-6 items-center transition-all duration-100 ease-in-out
 }
 
 .default-form-container {
-    @apply flex bg-(--card-background-color) pt-16 pb-10 px-10 rounded-2xl text-left min-w-[400px] h-fit border-1 border-(--basic-border-color)
+    @apply flex bg-(--card-background-color) pt-16 pb-10 px-10 rounded-2xl text-left min-w-[200px] h-fit border-1 border-(--basic-border-color)
 }
 
 .default-link-button-small{
@@ -29,11 +29,12 @@ header, footer {
 }
 
 .default-label-anim-to-box {
-    @apply absolute left-5 translate-y-1/2 origin-center select-none cursor-text opacity-80 bottom-full transition-all duration-100 text-[10px] -top-0 peer-focus:-top-0 peer-focus:text-[10px] peer-placeholder-shown:text-[16px] peer-placeholder-shown:top-1/3 max-sm:peer-placeholder-shown:text-[12px] max-sm:peer-placeholder-shown:top-1/2
+    @apply absolute left-4 translate-y-1/2 origin-center select-none cursor-text opacity-80 bottom-full transition-all duration-100 text-[10px] top-0.5 peer-focus:top-0.5 peer-focus:text-[10px] peer-placeholder-shown:text-[16px] peer-placeholder-shown:top-1/3 max-sm:peer-placeholder-shown:text-[14px] max-sm:peer-focus:text-[10px]
 }
 
 .default-input-full-border {
-    @apply w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] p-3 focus:border-(--basic-focused-border-color) outline-0 rounded-[6px]
+    @apply w-full border-1 border-(--basic-border-color) bg-(--card-background-color) text-[14px] p-4 focus:border-(--basic-focused-border-color) outline-0 rounded-[6px]
 }
+
 
 
