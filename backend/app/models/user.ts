@@ -7,21 +7,28 @@ import Address from './address.js'
 import type { HasMany, HasOne, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Skill from './skill.js'
 import Education from './education.js'
+
+
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
 
-export default class Candidate extends compose(BaseModel, AuthFinder) {
-
+export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: number
+
+  @column()
+  declare is_admin: boolean
+
+  @column()
+  declare is_recruiter: boolean
 
   @column()
   declare name: string
 
   @column()
-  declare lastname: string
+  declare last_name: string
 
   @column({ serializeAs: null })
   declare password: string | undefined
@@ -42,13 +49,13 @@ export default class Candidate extends compose(BaseModel, AuthFinder) {
   declare email_verified: boolean
 
   @hasOne(() => Address)
-  declare addresses: HasOne<typeof Address>
+  declare address: HasOne<typeof Address>
 
   @hasMany(() => Education)
   declare educations: HasMany<typeof Education>
   
   @manyToMany(() => Skill, {
-    pivotTable: 'candidate_skills',
+    pivotTable: 'users_skills',
   })
   declare skills: ManyToMany<typeof Skill>
 

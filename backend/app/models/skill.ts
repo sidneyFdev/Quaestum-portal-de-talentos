@@ -1,6 +1,6 @@
 import { BaseModel, column, manyToMany } from '@adonisjs/lucid/orm'
-import Candidate from './candidate.js'
 import type { ManyToMany } from '@adonisjs/lucid/types/relations'
+import User from './user.js'
 
 export default class Skill extends BaseModel {
   @column({ isPrimary: true })
@@ -9,8 +9,8 @@ export default class Skill extends BaseModel {
   @column()
   declare name: string
 
-  @manyToMany(() => Candidate, {
-    pivotTable: 'candidate_skills',
+  @manyToMany(() => User, {
+    pivotTable: 'users_skills',
   })
-  declare candidates: ManyToMany<typeof Candidate>
+  declare users: ManyToMany<typeof User>
 }

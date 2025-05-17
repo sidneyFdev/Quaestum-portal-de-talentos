@@ -1,16 +1,16 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class SkillUser extends BaseSchema {
-  protected tableName = 'candidate_skills'
+  protected tableName = 'users_skills'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table
-        .integer('candidate_id')
+        .integer('user_id')
         .unsigned()
         .references('id')
-        .inTable('candidates')
+        .inTable('users')
         .onDelete('CASCADE')
       table
         .integer('skill_id')
@@ -18,7 +18,7 @@ export default class SkillUser extends BaseSchema {
         .references('id')
         .inTable('skills')
         .onDelete('CASCADE')
-      table.unique(['candidate_id', 'skill_id'])
+      table.unique(['user_id', 'skill_id'])
     })
   }
 

@@ -1,4 +1,6 @@
-import Candidate from '#models/candidate'
+import Address from '#models/address'
+import Education from '#models/education'
+import User from '#models/user'
 import { HttpContext } from '@adonisjs/core/http'
 import mail from '@adonisjs/mail/services/main'
 import { v4 as uuidv4 } from 'uuid'
@@ -7,31 +9,54 @@ export default class CandidatesController {
   async store({ request, response }: HttpContext) {
     const candidateData = request.only([
       'name',
-      'lastname',
+      'last_name',
       'email',
       'telephone',
       'birthdate',
       'educations',
+      'address',
       'skills',
+      'address',
+      'number',
+      'city',
+      'uf',
+      'postcode'
     ])
-    const user = await Candidate.create({
+    const user = await User.create({
       name: candidateData.name,
       email: candidateData.email,
       telephone: candidateData.telephone,
-      lastname: candidateData.lastname,
+      last_name: candidateData.last_name,
       birthdate: candidateData.birthdate,
     })
 
-    for (const edu of candidateData.educations) {
-      await user.related('educations').create({
-        institution: edu.institution,
-        course: edu.course,
-        conclusion: edu.conclusion,
-      })
+    if (candidateData.educations && candidateData.educations > 0){
+        let educations = candidateData.educations
+        await Education.createMany(
+            educations.map(value=>{
+              return {
+                ...value,
+                user_id: user?.id
+              }
+            })
+        )
     }
 
     if (candidateData.skills?.length) {
       await user.related('skills').attach(candidateData.skills)
+    }
+
+    if(candidateData.address) {
+      await Address.updateOrCreate(
+      {user_id: user?.id},  
+      {
+        user_id: user?.id,
+        address: candidateData.address,
+        number: candidateData.number,
+        city: candidateData.city,
+        uf: candidateData.uf,
+        postcode: candidateData.postcode
+      })
     }
 
     const token = uuidv4()
@@ -52,7 +77,7 @@ export default class CandidatesController {
   }
 
   async remove({ params, response }: HttpContext) {
-    const candidate = await Candidate.findOrFail(params.email)
+    const candidate = await User.findOrFail(params.email)
     await candidate.delete()
     return response.noContent()
   }

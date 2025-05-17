@@ -1,13 +1,13 @@
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import Candidate from './candidate.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import User from './user.js'
 
 export default class Address extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare candidateId: string
+  declare user_id: number
 
   @column()
   declare address: string
@@ -24,6 +24,6 @@ export default class Address extends BaseModel {
   @column()
   declare postcode: string
 
-  @belongsTo(() => Candidate)
-  declare candidate: BelongsTo<typeof Candidate>
+  @belongsTo(() => User)
+  declare user: BelongsTo<typeof User>
 }

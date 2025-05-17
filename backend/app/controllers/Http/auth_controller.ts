@@ -1,9 +1,9 @@
 import { HttpContext } from '@adonisjs/core/http';
-import Candidate from '#models/candidate';
+import User from '#models/user';
 
 export default class AuthController {
-    async update({ params, response}: HttpContext){
-        const user = await Candidate.findBy('email_token', params.token)
+    async verifyToken({ params, response}: HttpContext){
+        const user = await User.findBy('email_token', params.token)
 
         if (!user){
             return response.status(400).send({ message: 'Token Invalido'})

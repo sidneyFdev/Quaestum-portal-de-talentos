@@ -1,14 +1,14 @@
 import { BaseModel, belongsTo, column} from '@adonisjs/lucid/orm'
-import Candidate from './candidate.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import type { DateTime } from 'luxon'
+import User from './user.js'
 
 export default class Education extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
-  declare candidateId: number
+  @column({ columnName: 'user_id' }) 
+  declare user_id: number
 
   @column()
   declare institution: string
@@ -17,8 +17,11 @@ export default class Education extends BaseModel {
   declare course: string
 
   @column.date()
-  declare conclusion: DateTime
+  declare start_date: DateTime
 
-  @belongsTo(() => Candidate)
-  declare candidate: BelongsTo<typeof Candidate>
+  @column.date()
+  declare finished_date: DateTime
+
+  @belongsTo(() => User)
+  declare user: BelongsTo<typeof User>
 }
