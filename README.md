@@ -49,7 +49,7 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | Código do candidato sequencial e automático  | ✅ Concluído | [📁](/backend/database/migrations/candidate.ts) | Campo `id` com auto incremento padrão. |
 | Endereço preenchido automaticamente via ViaCEP  | ✅ Concluído | [📄](/frontend/src/services/viaCEP.ts) | Requisição feita ao ViaCEP via web service.                                         |
 | Apenas usuários logados podem visualizar dados | 🚧 Em andamento | [📄](/backend/start/routes.ts) | Falta proteger com middleware `auth`. Foram implementadas poucas rotas sem segurança até o momento |
-| Dois tipos de usuário: gestor e candidato  | ❌ Não iniciado  |  | Será implementado um novo banco para `administradores`.                                 |
+| Dois tipos de usuário: gestor e candidato  | ✅ Concluído  |  | Implementado as colunas de `administradores` e `recrutador` no banco de dados usuários.                                 |
 | Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/CandidateSkillsSeeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET |
 | Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/UsersController.ts) | Implementado com `uuid` e `@adonisjs/mail`.                                            |
 | Sistema deve permitir login com e-mail e senha | ❌ Não iniciado | | Somente a validação do e-mail após cadastro está ativa. |
@@ -58,7 +58,7 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | Buscar candidatos por nome e habilidades | ❌ Não iniciado  | | Não implementado devido à ausência do banco de dados dos recrutadores. |
 | Selecionar candidatos e enviar convite por e-mail para entrevista | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
 | Candidato selecionado deve ver notificação ao acessar o sistema | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
-| Aplicação deve usar ReactJS (Frontend) e AdonisJS V6 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Campo id com auto-increProjeto iniciado com Vite e ReactJS no frontend e AdonisJS v6 no backend.mento padrão.                               |
+| Aplicação deve usar ReactJS (Frontend) e AdonisJS V6 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Campo id com auto-incremento padrão. |
 | Banco de dados deve ser MySQL | ✅ Concluído | [📄](/backend/config/database.ts) | Conexão configurada em .env para uso local |
 | Repositório deve conter um README explicando como rodar e testar a aplicação  | 🚧 Em andamento  | [📄](/README.md) | Está sendo escrito com o andar do projeto |
 | Todos os arquivos necessários para rodar o projeto devem estar incluídos no repositório  | 🚧 Em andamento | [📁](/) | Aplicação em desenvolvimento |
@@ -71,7 +71,7 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | -------------------- | ------ | ---- |
 | Página - Login do Candidato | ✅ Concluído | [📄](/frontend/src/auth/login.jsx) |
 | Página - Registro | ✅ Concluído | [📄](/frontend/src/auth/register.jsx) |
-| Página - Esqueci a senha | ❌ Não iniciado | |
+| Página - Esqueci a senha | 🚧 Em andamento |[📄](/frontend/src/auth/resetpassword.jsx) |
 | Página - Confirmação de e-mail  | ❌ Não iniciado | |
 | Página - Login do Recrutador | 🚧 Em andamento | [📄](/frontend/src/admin/login.jsx) |
 | Página - Painel Recrutador | ❌ Não iniciado | |
