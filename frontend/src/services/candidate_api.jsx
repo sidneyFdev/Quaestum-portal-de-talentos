@@ -22,7 +22,7 @@ export default function CandidateRequest() {
     }
     
     const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}candidate/register`,
+      `${import.meta.env.VITE_API_URL}user/register`,
       correctData
     );
     if (response.status === 201) {

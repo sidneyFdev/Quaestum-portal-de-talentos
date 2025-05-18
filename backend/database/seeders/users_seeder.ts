@@ -1,9 +1,9 @@
 import { BaseSeeder } from "@adonisjs/lucid/seeders"
 import { DateTime } from "luxon";
-import Hash from "@adonisjs/core/services/hash";
 import User from "#models/user";
 import Address from "#models/address";
 import Education from "#models/education";
+import hash from "@adonisjs/core/services/hash";
 
 export default class usersSeed extends BaseSeeder {
     async run () {
@@ -19,7 +19,7 @@ export default class usersSeed extends BaseSeeder {
           "email": "admin@example.com",
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha1'),
+          "password": await hash.make('senha1'),
           "address": {
             "address": "Av. Central, 1000",
             "number": "1000",
@@ -37,7 +37,7 @@ export default class usersSeed extends BaseSeeder {
           "email": "recruiter@example.com",
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha2'),
+          "password": await hash.make('senha2'),
           "address": {
             "address": "Rua das Flores, 200",
             "number": "200",
@@ -71,7 +71,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [1, 3, 5],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha3'),
+          "password": await hash.make('senha3'),
           "address": {
             "address": "Rua das Acácias, 123",
             "number": "123",
@@ -99,7 +99,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [2, 4, 6, 8],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha4'),
+          "password": await hash.make('senha4'),
         },
         {
           "name": "Ana",
@@ -120,7 +120,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [1, 7, 9, 12, 13],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha5'),
+          "password": await hash.make('senha5'),
           "address": {
             "address": "Av. Brasil, 500",
             "number": "500",
@@ -148,7 +148,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [3, 5, 10],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha6'),
+          "password": await hash.make('senha6'),
           "address": {
             "address": "Rua das Palmeiras, 789",
             "number": "789",
@@ -169,7 +169,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [6, 11, 13, 14, 15],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha7'),
+          "password": await hash.make('senha7'),
           "address": {
             "address": "Rua das Laranjeiras, 456",
             "number": "456",
@@ -197,7 +197,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [2, 3],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha8'),
+          "password": await hash.make('senha8'),
           "address": {
             "address": "Av. Paulista, 1000",
             "number": "1000",
@@ -231,7 +231,7 @@ export default class usersSeed extends BaseSeeder {
           "skills": [1, 4, 7, 9],
           "email_token": null,
           "email_verified": true,
-          "password": await Hash.make('senha9'),
+          "password": await hash.make('senha9'),
           "address": {
             "address": "Rua do Comércio, 321",
             "number": "321",

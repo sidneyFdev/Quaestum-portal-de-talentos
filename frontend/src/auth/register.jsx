@@ -165,7 +165,6 @@ const Register = () => {
     })
     InsertNewCandidate(formData)
       .then((response) => {
-        console.log(response)
         if (response == 201) {
           alert(`Seu cadastro foi realizado! Para prosseguir, confirme o e-mail cadastrado.`)
           navigate('/login')

@@ -6,7 +6,7 @@ const RecruiterHome = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}candidates/list`)
+      .get(`${import.meta.env.VITE_API_URL}users/list`)
       .then((response) => setCandidates(response.data))
       .catch((error) => console.error(error));
   }, []);

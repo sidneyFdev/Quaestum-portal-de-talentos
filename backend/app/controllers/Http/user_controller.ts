@@ -4,10 +4,17 @@ import User from '#models/user'
 import { HttpContext } from '@adonisjs/core/http'
 import mail from '@adonisjs/mail/services/main'
 import { v4 as uuidv4 } from 'uuid'
+import crypto from 'node:crypto'
 
-export default class CandidatesController {
+
+export default class UsersController {
   async store({ request, response }: HttpContext) {
-    const candidateData = request.only([
+
+    function generateRandomPassword(length = 12) {
+      return crypto.randomBytes(length).toString('base64').slice(0, length)
+    }
+
+    const userData = request.only([
       'name',
       'last_name',
       'email',
@@ -22,16 +29,19 @@ export default class CandidatesController {
       'uf',
       'postcode'
     ])
+    const token = uuidv4()
     const user = await User.create({
-      name: candidateData.name,
-      email: candidateData.email,
-      telephone: candidateData.telephone,
-      last_name: candidateData.last_name,
-      birthdate: candidateData.birthdate,
+      name: userData.name,
+      email: userData.email,
+      telephone: userData.telephone,
+      last_name: userData.last_name,
+      birthdate: userData.birthdate,
+      email_token: token,
+      password: generateRandomPassword(),
     })
 
-    if (candidateData.educations && candidateData.educations > 0){
-        let educations = candidateData.educations
+    if (userData.educations && userData.educations > 0){
+        let educations = userData.educations
         await Education.createMany(
             educations.map(value=>{
               return {
@@ -42,26 +52,22 @@ export default class CandidatesController {
         )
     }
 
-    if (candidateData.skills?.length) {
-      await user.related('skills').attach(candidateData.skills)
+    if (userData.skills?.length) {
+      await user.related('skills').attach(userData.skills)
     }
 
-    if(candidateData.address) {
+    if(userData.address) {
       await Address.updateOrCreate(
       {user_id: user?.id},  
       {
         user_id: user?.id,
-        address: candidateData.address,
-        number: candidateData.number,
-        city: candidateData.city,
-        uf: candidateData.uf,
-        postcode: candidateData.postcode
+        address: userData.address,
+        number: userData.number,
+        city: userData.city,
+        uf: userData.uf,
+        postcode: userData.postcode
       })
     }
-
-    const token = uuidv4()
-    user.email_token = token
-    await user.save()
 
     await mail.send((message) => {
       message
@@ -80,5 +86,31 @@ export default class CandidatesController {
     const candidate = await User.findOrFail(params.email)
     await candidate.delete()
     return response.noContent()
+  }
+
+  async getData({ request , response, auth }: HttpContext) {
+    const loggedUser  = await auth.authenticate();
+    const { email } = request.only(['email']);
+    
+    console.log('Logged User:', loggedUser );
+    console.log('Email from request:', email);
+    const user = await User.findBy('email', email);
+    
+    if (!user) {
+        return response.status(404).send({ message: 'Usuário não encontrado' });
+    } 
+    
+    if (loggedUser .email !== email) {
+        return response.status(403).send({ message: 'Acesso Negado!' });
+    }
+
+    const isOwnerUser = loggedUser.email === email
+    const isAdminUser = loggedUser.is_admin
+
+    if (!isOwnerUser && !isAdminUser) {
+      return response.status(403).send({ message: 'Acesso Negado!'})
+    }
+  
+    return response.ok(user)
   }
 }

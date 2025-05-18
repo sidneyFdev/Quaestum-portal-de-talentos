@@ -15,4 +15,5 @@ export default class AuthController {
 
         return response.send({ message: 'Email confirmado com sucesso!'})
     }
+
 }

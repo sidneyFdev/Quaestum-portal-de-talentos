@@ -51,7 +51,7 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | Apenas usuários logados podem visualizar dados | 🚧 Em andamento | [📄](/backend/start/routes.ts) | Falta proteger com middleware `auth`. Foram implementadas poucas rotas sem segurança até o momento |
 | Dois tipos de usuário: gestor e candidato  | ❌ Não iniciado  |  | Será implementado um novo banco para `administradores`.                                 |
 | Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/CandidateSkillsSeeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET |
-| Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/CandidatesController.ts) | Implementado com `uuid` e `@adonisjs/mail`.                                            |
+| Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/UsersController.ts) | Implementado com `uuid` e `@adonisjs/mail`.                                            |
 | Sistema deve permitir login com e-mail e senha | ❌ Não iniciado | | Somente a validação do e-mail após cadastro está ativa. |
 | Área restrita para listagem de candidatos acessível só por gestores | ❌ Não iniciado  | | Requer filtro, segurança e banco de dados dos recrutadores. |
 | Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
