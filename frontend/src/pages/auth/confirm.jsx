@@ -115,7 +115,7 @@ const ConfirmAccount = () => {
             type="button"
             onClick={handleSubmit}
           >
-            Enviar instruções
+            Definir Senha
             <FontAwesomeIcon className="ml-4" icon={faArrowRight} />
           </button>
         </div>
