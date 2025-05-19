@@ -69,6 +69,27 @@ export default class SessionController {
     return response.ok({ message: 'Realizado Logout com sucesso!' })
   }
 
+  async confirm({request, params, response }: HttpContext) {
+    const receivedToken = params.token
+    const { password } = request.body()
+
+    const user = await User.findBy('email_token', receivedToken)
+    if (!user) {
+      return response.status(400).send({ message: 'Token inválido ou expirado.' })
+    }
+    if (user.email_verified) {
+      return response.status(400).send({ message: 'E-mail já confirmado.' })
+    }
+    user.email_verified = true
+    user.email_token = null
+    user.password = await hash.make(password)
+    await user.save()
+    return response.status(200).send({
+      code: 200,
+      message: 'E-mail confirmado com sucesso!',
+    })
+  }
+
   async reset({ request, params, response }: HttpContext) {
     const { password } = request.body()
     const receivedToken = params.token
