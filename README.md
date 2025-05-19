@@ -191,19 +191,26 @@ npm install
 As variáveis a seguir são necessárias para o funcionamento da aplicação. Um arquivo `.env.example` já está incluído no repositório como modelo. Sendo assim, copie-o e renomeie para `.env`.
 
 ```env
+TZ=UTC
+PORT=3333
+HOST=localhost
+LOG_LEVEL=info
+APP_KEY=
+NODE_ENV=development
 FRONTEND_URL=http://localhost:5173/
-DB_URL=http://localhost:3333
+DB_URL=http://localhost:3333/
+DB_HOST=127.0.0.1
+DB_PORT=3306
 DB_USER=adonis
 DB_PASSWORD=adonis
-DB_NAME=adonis_app
-DB_HOST=localhost
-DB_PORT=3306
-MAIL_HOST=smtp.exemplo.io
-MAIL_PORT=2525
-MAIL_USER=exemplo@exemplo.com
-MAIL_PASSWORD=your_password
+DB_DATABASE=adonis_app
+SESSION_DRIVER=cookie
+MAIL_CONNECTION=smtp
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=exemplo@exemplo.com
+SMTP_PASSWORD=your_password
 MAIL_FROM="No-Reply <recrutamento@example.com>"
-
 ```
 
 Execute o comando abaixo para popular o campo `APP_KEY`.
