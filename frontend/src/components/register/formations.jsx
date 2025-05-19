@@ -129,22 +129,25 @@ export const RegisterFormation = ({
                         name={`formation${form}${index}`}
                         value={val[form]}
                         onChange={(e) => {
-                            let value = e.target.value;
-                          
-                            if (form === "start_date" || form === "finished_date") {
-                              value = value.replace(/\D/g, "").slice(0, 8); // Apenas números, máx. 8 dígitos
-                              value = value
-                                .replace(/^(\d{2})(\d)/, "$1/$2")
-                                .replace(/^(\d{2}\/\d{2})(\d)/, "$1/$2");
-                            }
-                          
-                            let updatedFormations = [...candidateFormations];
-                            updatedFormations[index] = {
-                              ...val,
-                              [form]: value,
-                            };
-                            setCandidateFormations(updatedFormations);
-                          }}
+                          let value = e.target.value;
+
+                          if (
+                            form === "start_date" ||
+                            form === "finished_date"
+                          ) {
+                            value = value.replace(/\D/g, "").slice(0, 8); // Apenas números, máx. 8 dígitos
+                            value = value
+                              .replace(/^(\d{2})(\d)/, "$1/$2")
+                              .replace(/^(\d{2}\/\d{2})(\d)/, "$1/$2");
+                          }
+
+                          let updatedFormations = [...candidateFormations];
+                          updatedFormations[index] = {
+                            ...val,
+                            [form]: value,
+                          };
+                          setCandidateFormations(updatedFormations);
+                        }}
                       />
                     </div>
                   );
