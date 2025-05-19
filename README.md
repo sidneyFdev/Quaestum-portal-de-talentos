@@ -252,7 +252,7 @@ VITE_API_URL=http://localhost:3333
 ## 🐛 Problemas Conhecidos
 
 - ⚠️ Não há redirecionamento para página de NotFound no caso de URLs inexistentes no frontend.
-- ⚠️ Falta telas de loading e desabilitar botões do frontend para evitar requests repetidas ao backend.
+- ⚠️ Falta telas de loading e desabilitar botões e hooks do frontend para evitar requests repetidas ao backend.
 - ⚠️ As respostas e funções do backend, embora estejam funcionando, não estão padronizadas.
 - ⚠️ Os inputs no cadastro não estão sendo devidamente tratados antes de enviar ao backend. Logo, caso alguém insira, por exemplo, a data `99/99/2025`, ela será enviada sem a checagem e pode acarretar em erro.
 - ⚠️ A listagem de usuários ainda não foi limitada. Logo, se adicionar muitos usuários, pode provocar extrema lentidão no aplicativo.
