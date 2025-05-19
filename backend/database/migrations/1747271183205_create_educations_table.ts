@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('institution', 80).notNullable()
       table.string('course', 80).notNullable()
       table.date('start_date').notNullable()
-      table.date('finished_date').notNullable()
+      table.date('finished_date').nullable()
       table.timestamps(true)
     })
   }
