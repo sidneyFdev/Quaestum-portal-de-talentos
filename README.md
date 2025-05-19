@@ -249,7 +249,7 @@ Assim como com AdonisJS, já há um `.env.example` pronto para ser copiado.
 > 🔔 Atenção: todas as variáveis de ambiente no Vite devem começar com `VITE_`. Caso crie localmente com React, deverão começar com `REACT_APP_`. Neste projeto, estaremos utilizando VITE.
 
 ```env
-VITE_API_URL=http://localhost:3333\
+VITE_API_URL=http://localhost:3333/
 ```
 
 # 🔧 Problemas / Implementações Futuras
