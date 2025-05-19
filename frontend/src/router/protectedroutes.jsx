@@ -1,10 +1,19 @@
-import axios from "axios";
+import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
+import { AuthContext } from "../provider/auth_provider";
 
 const ProtectedRoutes = () => {
-    const token = localStorage.getItem('token')
+    const { token, isAdmin } = useContext(AuthContext)
 
-    return token ? <Outlet/> : <Navigate to="/login" />
+    if (!token){
+        return <Navigate to="/login" replace />
+    }
+
+    if (isAdmin && location.pathname === '/home') {
+        return <Navigate to="/recruiter" replace />
+    }
+
+    return <Outlet />
 }
 
 export default ProtectedRoutes;

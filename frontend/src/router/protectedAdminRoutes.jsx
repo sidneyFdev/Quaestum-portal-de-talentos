@@ -1,13 +1,11 @@
+import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
+import { AuthContext } from "../provider/auth_provider";
 
 const ProtectedAdminRoutes = () => {
-    const token = localStorage.getItem("token")
-    const isAdmin = localStorage.getItem("is_admin") === "true"
-  
-    if (!token) return <Navigate to="/login" />
-    if (!isAdmin) return <Navigate to="/unauthorized" />
+    const { isAdmin } = useContext(AuthContext)
 
-    return <Outlet />
+    return isAdmin ? <Outlet/> : <Navigate to="/unauthorized" />
 }
 
 export default ProtectedAdminRoutes;
