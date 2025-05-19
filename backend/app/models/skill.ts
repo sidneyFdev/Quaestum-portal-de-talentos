@@ -9,6 +9,9 @@ export default class Skill extends BaseModel {
   @column()
   declare name: string
 
+  @column()
+  declare icon: string
+
   @manyToMany(() => User, {
     pivotTable: 'users_skills',
   })

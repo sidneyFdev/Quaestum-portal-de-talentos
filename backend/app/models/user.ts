@@ -73,4 +73,12 @@ export default class User extends BaseModel {
     type: 'auth_token',
     tokenSecretLength: 40,
   })
+
+  static passwordResetTokens = DbAccessTokensProvider.forModel(User, {
+    expiresIn: '15m',
+    prefix: 'reset_',
+    table: 'password_reset_tokens',
+    type: 'password_reset',
+    tokenSecretLength: 32,
+  })
 }
