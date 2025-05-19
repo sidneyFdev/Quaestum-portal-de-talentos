@@ -20,8 +20,10 @@ O objetivo principal é demonstrar conhecimentos em ReactJS, AdonisJS, integraç
     - [🔐 Variáveis de Ambiente (.env)](#-variáveis-de-ambiente-env)
     - [Migrations](#migrations)
     - [Seeds](#seeds)
+    - [Iniciando o backend](#iniciando-o-backend)
   - [ReactJS / Vite](#reactjs--vite)
     - [🔐 Variáveis de Ambiente (.env)](#-variáveis-de-ambiente-env-1)
+    - [Iniciando o frontend](#iniciando-o-frontend)
 - [🔧 Problemas / Implementações Futuras](#-problemas--implementações-futuras)
   - [🐛 Problemas Conhecidos](#-problemas-conhecidos)
   - [✅ Problemas Corrigidos](#-problemas-corrigidos)
@@ -240,13 +242,20 @@ Popular as tabelas `skills` e adicionar alguns `candidatos` para o funcionamento
 node ace db:seed
 ```
 
+### Iniciando o backend
 
+Dentro da pasta backend, execute:
+
+```bash
+npm run dev
+```
 
 ## ReactJS / Vite
 
 ```bash
 cd frontend
 npm install
+
 ```
 
 ### 🔐 Variáveis de Ambiente (.env)
@@ -257,6 +266,13 @@ Assim como com AdonisJS, já há um `.env.example` pronto para ser copiado.
 
 ```env
 VITE_API_URL=http://localhost:3333/
+```
+### Iniciando o frontend
+
+Dentro da pasta frontend, execute:
+
+```bash
+npm run dev
 ```
 
 # 🔧 Problemas / Implementações Futuras
@@ -283,6 +299,9 @@ VITE_API_URL=http://localhost:3333/
 - ⚠️ Ao invés de respostas utilizando o próprio frontend, as repostas das requests estão sendo enviadas via `alert`, o que não é o ideal.
 - 💡 Necessário `refatoração`, pois a maioria do frontend está com HTML puro, sem utilizar a vantagem do REACT que são seus componentes. Além disso, no backend, há muita repetição de código durantes as requests.
 - 💡 Faltam `comentários` no código para guiar na leitura.
+- 💡 No momento, há somente um usuário administrador e não é possível criar novos. Seguindo o cadastro já dentro das seeds, use esta credencial:
+> email: admin@example.com
+> senha: senha1
 
 ## 📄 Licença
 
