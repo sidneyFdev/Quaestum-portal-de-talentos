@@ -17,9 +17,9 @@ O objetivo principal é demonstrar conhecimentos em ReactJS, AdonisJS, integraç
     - [🛠️ Alternativa ao Docker: MySQL instalado localmente](#️-alternativa-ao-docker-mysql-instalado-localmente)
   - [AdonisJS](#adonisjs)
     - [Instalação](#instalação)
+    - [🔐 Variáveis de Ambiente (.env)](#-variáveis-de-ambiente-env)
     - [Migrations](#migrations)
     - [Seeds](#seeds)
-    - [🔐 Variáveis de Ambiente (.env)](#-variáveis-de-ambiente-env)
   - [ReactJS / Vite](#reactjs--vite)
     - [🔐 Variáveis de Ambiente (.env)](#-variáveis-de-ambiente-env-1)
 - [🔧 Problemas / Implementações Futuras](#-problemas--implementações-futuras)
@@ -182,36 +182,10 @@ FLUSH PRIVILEGES;
 
 Execute o seguinte comando para instalar as dependências.
 
-> Observação: Caso receba erro durante `npm install`, utilize `npm install --force`para resolver os pacotes quebrados.
-
 ```bash
 cd backend
 npm install 
-node ace generate:key
 ```
-
-### Migrations
-
-Criação das tabelas predefinidas pelas configurações no AdonisJS
-
-```bash
-node ace migrations:run
-```
-Caso deseje recriar um banco de dados limpo, todas as migrações podem ser refeitas com:
-
-> ⚠️ Atenção: Este comando irá limpar todas as tabelas do banco de dados que estão referenciadas nas migrations.
-
-```bash
-node ace migrations:fresh
-```
-
-### Seeds
-
-Popular as tabelas `skills` e adicionar alguns `candidatos` para o funcionamento básico da aplicação
-```bash
-node ace db:seed
-```
-
 ### 🔐 Variáveis de Ambiente (.env)
 
 As variáveis a seguir são necessárias para o funcionamento da aplicação. Um arquivo `.env.example` já está incluído no repositório como modelo. Sendo assim, copie-o e renomeie para `.env`.
@@ -232,6 +206,35 @@ MAIL_FROM="No-Reply <recrutamento@example.com>"
 
 ```
 
+Execute o comando abaixo para popular o campo `APP_KEY`.
+```bash
+node ace generate:key
+```
+
+### Migrations
+
+Criação das tabelas predefinidas pelas configurações no AdonisJS
+
+```bash
+node ace migration:run
+```
+Caso deseje recriar um banco de dados limpo, todas as migrações podem ser refeitas com:
+
+> ⚠️ Atenção: Este comando irá limpar todas as tabelas do banco de dados que estão referenciadas nas migrations.
+
+```bash
+node ace migration:fresh
+```
+
+### Seeds
+
+Popular as tabelas `skills` e adicionar alguns `candidatos` para o funcionamento básico da aplicação
+```bash
+node ace db:seed
+```
+
+
+
 ## ReactJS / Vite
 
 ```bash
@@ -241,10 +244,12 @@ npm install
 
 ### 🔐 Variáveis de Ambiente (.env)
 
+Assim como com AdonisJS, já há um `.env.example` pronto para ser copiado.
+
 > 🔔 Atenção: todas as variáveis de ambiente no Vite devem começar com `VITE_`. Caso crie localmente com React, deverão começar com `REACT_APP_`. Neste projeto, estaremos utilizando VITE.
 
 ```env
-VITE_API_URL=http://localhost:3333
+VITE_API_URL=http://localhost:3333\
 ```
 
 # 🔧 Problemas / Implementações Futuras
