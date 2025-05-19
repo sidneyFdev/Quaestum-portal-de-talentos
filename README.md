@@ -22,6 +22,7 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
     - [Variáveis de ambiente](#variáveis-de-ambiente)
 - [🔧 Problemas Conhecidos / Implementações Futuras](#-problemas-conhecidos--implementações-futuras)
   - [🔧 Problemas](#-problemas)
+  - [🛡️ Problemas Solucionados](#️-problemas-solucionados)
   - [🛠️ Melhorias](#️-melhorias)
   - [📄 Licença](#-licença)
 - [Sobre mim](#sobre-mim)
@@ -45,22 +46,23 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 | Requisito | Status | Link |Comentários |
 |-----------|--------|------|------------|
 | As tabelas devem ser criadas com migrations do AdonisJS | ✅ Concluído | [📁](/backend/database/migrations/) | Foram criadas 5 migrations para as entidades principais. |
-| O e-mail do candidato deve ser único | ✅ Concluído | [📄](/backend/app/models/candidate.ts) | Restrição definida na migration com `unique()`.                                              |
-| Código do candidato sequencial e automático  | ✅ Concluído | [📁](/backend/database/migrations/candidate.ts) | Campo `id` com auto incremento padrão. |
+| O e-mail do candidato deve ser único | ✅ Concluído | [📄](/backend/database/migrations/1747270779397_create_users_table.ts) | Restrição definida na migration com `unique()`.                                              |
+| Código do candidato sequencial e automático  | ✅ Concluído | [📄](/backend/database/migrations/1747270779397_create_users_table.ts) | Campo `id` com auto incremento padrão. |
 | Endereço preenchido automaticamente via ViaCEP  | ✅ Concluído | [📄](/frontend/src/services/viaCEP.ts) | Requisição feita ao ViaCEP via web service.                                         |
-| Apenas usuários logados podem visualizar dados | 🚧 Em andamento | [📄](/backend/start/routes.ts) | Falta proteger com middleware `auth`. Foram implementadas poucas rotas sem segurança até o momento |
-| Dois tipos de usuário: gestor e candidato  | ✅ Concluído  |  | Implementado as colunas de `administradores` e `recrutador` no banco de dados usuários.                                 |
-| Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/CandidateSkillsSeeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET |
-| Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/UsersController.ts) | Implementado com `uuid` e `@adonisjs/mail`.                                            |
-| Sistema deve permitir login com e-mail e senha | ❌ Não iniciado | | Somente a validação do e-mail após cadastro está ativa. |
-| Área restrita para listagem de candidatos acessível só por gestores | ❌ Não iniciado  | | Requer filtro, segurança e banco de dados dos recrutadores. |
-| Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
-| Buscar candidatos por nome e habilidades | ❌ Não iniciado  | | Não implementado devido à ausência do banco de dados dos recrutadores. |
-| Selecionar candidatos e enviar convite por e-mail para entrevista | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
-| Candidato selecionado deve ver notificação ao acessar o sistema | ❌ Não iniciado | | Não implementado devido à ausência do banco de dados dos recrutadores. |
-| Aplicação deve usar ReactJS (Frontend) e AdonisJS V6 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Campo id com auto-incremento padrão. |
+| Apenas usuários logados podem visualizar dados | ✅ Concluído  | [📄](/frontend/src/router/routes.jsx) | Rotas protegidas através de autenticação `middleware` no backend e `authProvider` nas rotas do FrontEnd |
+| Dois tipos de usuário: gestor e candidato  | ✅ Concluído  | [📄](/backend/app/models/user.ts) | Implementado as colunas de `administradores` e `recrutador` no banco de dados usuários.                                 |
+| Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/users_seeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET |
+| Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/user_controller.ts) | Implementado com `uuid` e `@adonisjs/mail`.  |      
+ Candidato recebe e-mail de confirmação com link para redefinição senha  | 🚧 Em andamento | [📄](/backend/app/controllers/Http/user_controlle.ts) | Será implementado dentro do controlador de Usuario com `uuid` e `@adonisjs/mail`. |
+| Sistema deve permitir login com e-mail e senha | ✅ Concluído | [📄](/frontend/src/pages/auth/login.jsx) | Tela de login funcional |
+| Área restrita para listagem de candidatos acessível só por gestores | ✅ Concluído  | [📄](/frontend/src/router/protectedAdminRoutes.jsx) | Realizado a checagem da coluna `is_admin` presente no banco `users`para que a rota fique protegida por autenticação. Checagem feita no `backend` e no `frontend`|
+| Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ✅ Concluído | [📄](/frontend/src/pages/recruiter/home.jsx)| Implementado na página `'/recruiter'`, disponível somente na rota de `administradores`  |
+| Buscar candidatos por nome e habilidades | 🚧 Concluído parcialmente  | [📄](/frontend/src/pages/recruiter/home.jsx) | Embora seja possível filtrar `habilidades`, `nome` e `email`, estes filtros não foram separadas |
+| Selecionar candidatos e enviar convite por e-mail para entrevista | ✅ Concluído  | [📄](/backend/app/controllers/Http/recruiters_controller.ts) | Implementado através da seleção de candidatos dentro da página `'/recruiter'` |
+| Candidato selecionado deve ser notificação ao acessar o sistema | ❌ Não iniciado | | Ainda não implementado |
+| Aplicação deve usar ReactJS (Frontend) e AdonisJS V6 (Backend) | ✅ Concluído | [📁Front](/frontend) [📁Back](/backend) | Aplicação atendendo os requisitos. |
 | Banco de dados deve ser MySQL | ✅ Concluído | [📄](/backend/config/database.ts) | Conexão configurada em .env para uso local |
-| Repositório deve conter um README explicando como rodar e testar a aplicação  | 🚧 Em andamento  | [📄](/README.md) | Está sendo escrito com o andar do projeto |
+| Repositório deve conter um README explicando como rodar e testar a aplicação  | 🚧 Em andamento  | [📄](/README.md) | Está sendo escrito junto ao desenvolvimento do projeto |
 | Todos os arquivos necessários para rodar o projeto devem estar incluídos no repositório  | 🚧 Em andamento | [📁](/) | Aplicação em desenvolvimento |
 ****
 
@@ -69,15 +71,16 @@ Este repositório é um projeto prático desenvolvido para testar meus conhecime
 
 | Componente / Páginas | Status | Link |
 | -------------------- | ------ | ---- |
-| Página - Login do Candidato | ✅ Concluído | [📄](/frontend/src/auth/login.jsx) |
-| Página - Registro | ✅ Concluído | [📄](/frontend/src/auth/register.jsx) |
-| Página - Esqueci a senha | 🚧 Em andamento |[📄](/frontend/src/auth/resetpassword.jsx) |
-| Página - Confirmação de e-mail  | ❌ Não iniciado | |
-| Página - Login do Recrutador | 🚧 Em andamento | [📄](/frontend/src/admin/login.jsx) |
-| Página - Painel Recrutador | ❌ Não iniciado | |
+| Página - Login do Candidato | ✅ Concluído | [📄](/frontend/src/pages/auth/login.jsx) |
+| Página - Registro | ✅ Concluído | [📄](/frontend/src/pages/auth/register.jsx) |
+| Página - Esqueci a senha | ✅ Concluído |[📄](/frontend/src/pages/auth/resetpassword.jsx) |
+| Página - Confirmação de e-mail  | ✅ Concluído | [📄](/frontend/src/pages/auth/confirm.jsx) |
+| Página - Painel Recrutador | ✅ Concluído | [📄](/frontend/src/pages/recruiter/home.jsx) |
+| Página - Painel Candidato | 🚧 Em andamento  | [📄](/frontend/src/pages/candidate/home.jsx) |
 | Componente - Header | 🚧 Em andamento |[📄](/frontend/src/components/layout/header.jsx) |
 | Componente - Sidebar | 🚧 Em andamento |[📄](/frontend/src/components/layout/sidebar.jsx) |
-| Componente - Footer | ❌ Não iniciado | |
+| Componente - Footer | 🚧 Em andamento | [📄](/frontend/src/components/layout/footer.jsx) |
+
 
 ### Informações adicionais do projeto
 
@@ -121,7 +124,7 @@ Iniciando o container:
 ```bash
 docker-compose up -d
 ```
-> Observação: Em alguns sistemas, pode ser necessário usar `sudo` para executar o comando acima. Além disso, o Docker Compose também pode ser utilizado com o comando `docker compose` (sem o hífen).
+> Observação: Em alguns ambientes de sistema Linux, dependendo da sua configuração, pode ser necessário usar `sudo` para executar o comando acima. Além disso, o Docker Compose também pode ser utilizado com o comando `docker compose` (sem o hífen) caso o anterior não funcione.
 
 ```bash
 docker exec -it mysql_quaestum mysql -u adonis -p
@@ -198,14 +201,22 @@ VITE_API_URL=http://localhost:3333
 # 🔧 Problemas Conhecidos / Implementações Futuras
 
 ## 🔧 Problemas
-- ⚠️ Middleware de autenticação ainda não está protegendo todas as rotas.
-- ⚠️ Banco, interface e funcionalidades do gestor/recrutador não foram implementadas.
+
+- ⚠️ Não há redirecionamento para página de NotFound no caso de URLs inexistentes no frontend.
+- ⚠️ Falta telas de loading e desabilitar botões do frontend para evitar requests repetidas ao backend.
+- ⚠️ As respostas e funções do backend, embora estejam funcionando, não estão padronizadas.
+
+## 🛡️ Problemas Solucionados
+- 🪪 Middleware de autenticação nas rotas do backend.
+- 🪪 Rotas protegidas no frontend.
 
 ## 🛠️ Melhorias
-- 📬 Reenvio de e-mail de confirmação para candidatos.
+- 📬 Envio de confirmação de cadastro após validação pelo usuário.
 - 🧪 Criação de testes unitários principais.
 - 💡 Componentização dos elementos no frontend.
-- 📊 Implementar filtro de busca na listagem de candidatos.
+- 🦋 Implementação de nomes, logos e ícones.
+- 📊 Implementar funcionalidades na tabela do recrutados, para facilitar visualização, como organização por ordem alfabética.
+- ⚠️ Ao invés de respostas pelo backend, as repostas das requests estão sendo enviadas via `alert`, o que não é o ideal.
 
 ## 📄 Licença
 
@@ -222,4 +233,4 @@ Quer trocar uma ideia ou dar feedback? Fique à vontade para me chamar!
 
 ---
 
-<i>Feito com 💛 por Sidney!</i>
+<i>Feito com </i>💛<i> por Sidney!</i>
