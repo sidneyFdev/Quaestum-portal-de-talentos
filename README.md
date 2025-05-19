@@ -254,6 +254,7 @@ VITE_API_URL=http://localhost:3333
 - ⚠️ Não há redirecionamento para página de NotFound no caso de URLs inexistentes no frontend.
 - ⚠️ Falta telas de loading e desabilitar botões do frontend para evitar requests repetidas ao backend.
 - ⚠️ As respostas e funções do backend, embora estejam funcionando, não estão padronizadas.
+- ⚠️ Os inputs no cadastro não estão sendo devidamente tratados antes de enviar ao backend. Logo, caso alguém insira, por exemplo, a data `99/99/2025`, ela será enviada sem a checagem e pode acarretar em erro.
 
 ## ✅ Problemas Corrigidos
 - 🪪 Middleware de autenticação nas rotas do backend.
@@ -268,6 +269,7 @@ VITE_API_URL=http://localhost:3333
 - 📊 Implementar funcionalidades na tabela do recrutados, para facilitar visualização, como organização por ordem alfabética.
 - ⚠️ Ao invés de respostas utilizando o próprio frontend, as repostas das requests estão sendo enviadas via `alert`, o que não é o ideal.
 - 💡 Necessário `refatoração`, pois a maioria do frontend está com HTML puro, sem utilizar a vantagem do REACT que são seus componentes. Além disso, no backend, há muita repetição de código durantes as requests.
+- 💡 Faltam `comentários` no código para guiar na leitura.
 
 ## 📄 Licença
 
