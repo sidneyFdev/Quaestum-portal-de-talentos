@@ -1,6 +1,6 @@
 import User from '#models/user'
 import { HttpContext } from '@adonisjs/core/http'
-import hash from '@adonisjs/services/hash'
+import hash from '@adonisjs/core/services/hash'
 import db from '@adonisjs/lucid/services/db'
 import mail from '@adonisjs/mail/services/main'
 
