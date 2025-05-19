@@ -1,9 +1,9 @@
-# # 🚀 Quaestum - Teste Técnico para Desenvolvedor Fullstack
+# 🚀 Quaestum - Teste Técnico para Desenvolvedor Fullstack
 
 Este repositório contém um projeto prático desenvolvido como parte do processo seletivo para a vaga de Desenvolvedor Fullstack na [Quaestum](https://www.quaestum.com.br/).  
 O objetivo principal é demonstrar conhecimentos em ReactJS, AdonisJS, integração com APIs REST, arquitetura por feature, autenticação, e boas práticas de desenvolvimento.
 
-- [# 🚀 Quaestum - Teste Técnico para Desenvolvedor Fullstack](#--quaestum---teste-técnico-para-desenvolvedor-fullstack)
+- [🚀 Quaestum - Teste Técnico para Desenvolvedor Fullstack](#-quaestum---teste-técnico-para-desenvolvedor-fullstack)
   - [Requisitos](#requisitos)
   - [Requisitos Obrigatórios](#requisitos-obrigatórios)
   - [Componentes e Páginas do FrontEnd](#componentes-e-páginas-do-frontend)
@@ -17,7 +17,6 @@ O objetivo principal é demonstrar conhecimentos em ReactJS, AdonisJS, integraç
     - [🛠️ Alternativa ao Docker: MySQL instalado localmente](#️-alternativa-ao-docker-mysql-instalado-localmente)
   - [AdonisJS](#adonisjs)
     - [Instalação](#instalação)
-    - [Dependências](#dependências)
     - [Migrations](#migrations)
     - [Seeds](#seeds)
     - [🔐 Variáveis de Ambiente (.env)](#-variáveis-de-ambiente-env)
@@ -48,15 +47,15 @@ O objetivo principal é demonstrar conhecimentos em ReactJS, AdonisJS, integraç
 
 | Requisito | Status | Link |Comentários |
 |-----------|--------|------|------------|
-| As tabelas devem ser criadas com migrations do AdonisJS | ✅ Concluído | [📁](/backend/database/migrations/) | Foram criadas 5 migrations para as entidades principais. |
+| As tabelas devem ser criadas com migrations do AdonisJS | ✅ Concluído | [📁](/backend/database/migrations/) | Foram criadas 7 migrations para as entidades principais. |
 | O e-mail do candidato deve ser único | ✅ Concluído | [📄](/backend/database/migrations/1747270779397_create_users_table.ts) | Restrição definida na migration com `unique()`.                                              |
 | Código do candidato sequencial e automático  | ✅ Concluído | [📄](/backend/database/migrations/1747270779397_create_users_table.ts) | Campo `id` com auto incremento padrão. |
 | Endereço preenchido automaticamente via ViaCEP  | ✅ Concluído | [📄](/frontend/src/services/viaCEP.jsx) | Requisição feita ao ViaCEP via web service.                                         |
-| Apenas usuários logados podem visualizar dados | ✅ Concluído  | [📄](/frontend/src/router/routes.jsx) | Rotas protegidas através de autenticação `middleware` no backend e `authProvider` nas rotas do FrontEnd |
+| Apenas usuários logados podem visualizar dados | ✅ Concluído  | [📄](/frontend/src/router/routes.jsx) | Rotas protegidas através de autenticação `middleware` no backend e `authProvider` nas rotas do FrontEnd. |
 | Dois tipos de usuário: gestor e candidato  | ✅ Concluído  | [📄](/backend/app/models/user.ts) | Campo booleano adicionado à tabela de usuários para distinguir entre `candidatos` e `recrutadores`.                                 |
-| Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/users_seeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET |
+| Preenchimento de habilidades com lista pré-definida  | ✅ Concluído | [📄](/backend/database/seeders/users_seeder.ts) | Lista incluída com seed e implementada no frontend com seleção múltipla, preenchida através de requisição GET. |
 | Candidato recebe e-mail de confirmação com link para definir senha  | ✅ Concluído | [📄](/backend/app/controllers/Http/user_controller.ts) | Implementado com `uuid` e `@adonisjs/mail`.  |      
-| Candidato recebe e-mail de confirmação com link para redefinição senha  | ✅ Concluído  | [📄](/backend/app/controllers/Http/session_controller.ts) | Será implementado dentro do controlador de Usuario com `uuid` e `@adonisjs/mail`. |
+| Candidato recebe e-mail de confirmação com link para redefinição senha  | ✅ Concluído  | [📄](/backend/app/controllers/Http/session_controller.ts) | Implementado usando `uuid` e `@adonisjs/mail`. |
 | Sistema deve permitir login com e-mail e senha | ✅ Concluído | [📄](/frontend/src/pages/auth/login.jsx) | Tela de login funcional |
 | Área restrita para listagem de candidatos acessível só por gestores | ✅ Concluído  | [📄](/frontend/src/router/protectedAdminRoutes.jsx) | Realizado a checagem da coluna `is_admin` presente no banco `users`para que a rota fique protegida por autenticação. Checagem feita no `backend` e no `frontend`|
 | Listagem mostra Código, Nome, E-mail, Telefone e Habilidades | ✅ Concluído | [📄](/frontend/src/pages/recruiter/home.jsx)| Implementado na página `'/recruiter'`, disponível somente na rota de `administradores`  |
@@ -149,6 +148,8 @@ docker-compose up -d
 ```
 > Observação: Em alguns ambientes de sistema Linux, dependendo da sua configuração, pode ser necessário usar `sudo` para executar o comando acima. Além disso, o Docker Compose também pode ser utilizado com o comando `docker compose` (sem o hífen) caso o anterior não funcione.
 
+Definindo senha para o usuário antes de entrar no banco de dados. Neste caso, `adonis`.
+
 ```bash
 docker exec -it mysql_quaestum mysql -u adonis -p
 ```
@@ -179,15 +180,14 @@ FLUSH PRIVILEGES;
 
 ### Instalação
 
+Execute o seguinte comando para instalar as dependências.
+
+> Observação: Caso receba erro durante `npm install`, utilize `npm install --force`para resolver os pacotes quebrados.
+
 ```bash
 cd backend
-npm init adonisjs@latest
-```
-### Dependências
-```bash
-npm i @adonisjs/lucid
-npm i @adonisjs/mail
-npm init adonisjs@latest -- -K=api --adapter=react --db=mysql
+npm install 
+node ace generate:key
 ```
 
 ### Migrations
@@ -214,7 +214,7 @@ node ace db:seed
 
 ### 🔐 Variáveis de Ambiente (.env)
 
-As variáveis a seguir são necessárias para o funcionamento da aplicação. Um arquivo `.env.example` já está incluído no repositório como modelo.
+As variáveis a seguir são necessárias para o funcionamento da aplicação. Um arquivo `.env.example` já está incluído no repositório como modelo. Sendo assim, copie-o e renomeie para `.env`.
 
 ```env
 FRONTEND_URL=http://localhost:5173/
@@ -255,6 +255,7 @@ VITE_API_URL=http://localhost:3333
 - ⚠️ Falta telas de loading e desabilitar botões do frontend para evitar requests repetidas ao backend.
 - ⚠️ As respostas e funções do backend, embora estejam funcionando, não estão padronizadas.
 - ⚠️ Os inputs no cadastro não estão sendo devidamente tratados antes de enviar ao backend. Logo, caso alguém insira, por exemplo, a data `99/99/2025`, ela será enviada sem a checagem e pode acarretar em erro.
+- ⚠️ A listagem de usuários ainda não foi limitada. Logo, se adicionar muitos usuários, pode provocar extrema lentidão no aplicativo.
 
 ## ✅ Problemas Corrigidos
 - 🪪 Middleware de autenticação nas rotas do backend.
