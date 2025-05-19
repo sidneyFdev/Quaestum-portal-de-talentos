@@ -13,23 +13,23 @@ import SkillsController from '#controllers/Http/skills_controller'
 import SessionController from '#controllers/Http/session_controller'
 import RecruitersController from '#controllers/Http/recruiters_controller'
 import { middleware } from './kernel.js'
-import User from '#models/user'
-// import IsAdmin from '#middleware/is_admin'
-
-router.get('/skills', [SkillsController, 'get'])
 
 router.delete('/user/:email', [UsersController, 'remove'])
 router.post('/user/register', [UsersController, 'store'])
-
-router.post('/user/login', [SessionController, 'store'])
-
+router.post('/user/login', [SessionController, 'login'])
+router.post('/confirm/:token', [SessionController, 'reset'])
+router.post('/reset/:token', [SessionController, 'reset'])
+router.post('/reset', [SessionController, 'createReset'])
+router.get('/skills/list', [SkillsController, 'get'])
 
 router.group(()=> {
-    router.get('/users/list', [RecruitersController, 'get'])
+    router.get('/candidates/list', [RecruitersController, 'get'])
+    router.post('/candidates/single', [RecruitersController, 'select'])
+    router.post('/candidates/invite', [RecruitersController, 'invite'])
 }).use([middleware.auth(), middleware.isAdmin()])
 
 router.group(()=> {
-    router.post('/user/detail', [UsersController, 'getData'])
+    router.get('/user/detail', [UsersController, 'get'])
     router.post('/user/logout', [SessionController, 'logout'])
 }).use(middleware.auth())
 
