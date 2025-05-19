@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
-import api from '../../services/api';
+import axios from 'axios';
 
 const SkillSelection = ({ candidateSkills, setCandidateSkills, classes }) => {
 
@@ -8,7 +8,7 @@ const SkillSelection = ({ candidateSkills, setCandidateSkills, classes }) => {
 
     useEffect(() => {
         const fetchSkills = async () => {
-            const response = await api.get('/skills');
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}skills/list`);
             setSkillsOptions(response.data.map(skill => ({
                 value: skill.id,
                 label: skill.name
